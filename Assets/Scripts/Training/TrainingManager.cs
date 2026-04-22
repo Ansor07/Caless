@@ -75,7 +75,7 @@ public class TrainingManager : MonoBehaviour
                 {6,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,-8,0,0,0,0,0},
+                {0,0,0,-8,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
@@ -213,7 +213,7 @@ public class TrainingManager : MonoBehaviour
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,-5,0},
+                {0,0,0,0,0,0,0,-5,0,0},
                 {0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0}
             }, 2, 2, 7, 7, true);
@@ -636,6 +636,13 @@ public class TrainingManager : MonoBehaviour
                     puzzleSolved = true;
                     gameManager.uiManager.ShowDialog("Правильно!", "Задача решена!", "Далее",
                         () => LoadPuzzle(currentPuzzle + 1));
+                }
+                else
+                {
+                    engine.UndoLastMove();
+                    gameManager.boardRenderer.RefreshPieces();
+                    gameManager.boardRenderer.ClearHighlights();
+                    gameManager.uiManager.ShowDialog("Неверно!", "Попробуйте другой ход.", "OK", null);
                 }
  
                 selectedSquare = new Vector2Int(-1, -1);

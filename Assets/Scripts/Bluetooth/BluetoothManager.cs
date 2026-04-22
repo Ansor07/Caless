@@ -240,8 +240,13 @@ public class BluetoothManager : MonoBehaviour
     {
         string data = "MOVE:" + move.from.x + "," + move.from.y + "," +
                        move.to.x + "," + move.to.y;
-        if (move.isCastling) data += ",CASTLE";
+        if (move.isCastling)
+        {
+            data += ",CASTLE," + move.castlePieceFrom.x + "," + move.castlePieceFrom.y +
+                    "," + move.castlePieceTo.x + "," + move.castlePieceTo.y;
+        }
         if (move.isTeleport) data += ",TELEPORT";
+        if (move.isDragonRanged) data += ",RANGED";
         SendData(data);
     }
  

@@ -490,7 +490,6 @@ public class GameManager : MonoBehaviour
     public void ActivateTemple()
     {
         if (!gameActive || !isPlayerTurn) return;
-        if (currentMode == GameMode.LocalMultiplayer && !engine.whiteTurn) return;
  
         bool isWhite = (currentMode == GameMode.LocalMultiplayer) ?
             engine.whiteTurn : (playerSide == PlayerSide.White);
@@ -662,30 +661,44 @@ public class GameManager : MonoBehaviour
     {
         string[] parts = moveData.Split(',');
         if (parts.Length < 4) return;
- 
+
         int fr = int.Parse(parts[0]);
         int fc = int.Parse(parts[1]);
         int tr = int.Parse(parts[2]);
         int tc = int.Parse(parts[3]);
- 
+
         Move move = new Move();
         move.from = new Vector2Int(fr, fc);
         move.to = new Vector2Int(tr, tc);
         move.piece = engine.board[fr, fc];
         move.captured = engine.board[tr, tc];
- 
-        if (moveData.Contains("CASTLE")) move.isCastling = true;
+
+        if (moveData.Contains("CASTLE"))
+        {
+            move.isCastling = true;
+            int castleIdx = System.Array.IndexOf(parts, "CASTLE");
+            if (castleIdx >= 0 && castleIdx + 4 < parts.Length)
+            {
+                move.castlePieceFrom = new Vector2Int(int.Parse(parts[castleIdx + 1]), int.Parse(parts[castleIdx + 2]));
+                move.castlePieceTo = new Vector2Int(int.Parse(parts[castleIdx + 3]), int.Parse(parts[castleIdx + 4]));
+            }
+        }
         if (moveData.Contains("TELEPORT")) move.isTeleport = true;
- 
+        if (moveData.Contains("RANGED")) move.isDragonRanged = true;
+
+        if (move.captured != CalessEngine.EMPTY)
+            aiCapturedPieces.Add(move.captured);
+
         engine.MakeMove(move);
         moveCount++;
- 
+
         boardRenderer.SetLastMove(move.from, move.to);
         boardRenderer.RefreshPieces();
- 
+
+        if (CheckGameOver()) return;
+
         isPlayerTurn = true;
         uiManager.UpdateGameInfo();
-        CheckGameOver();
     }
  
     private void OnBTChatReceived(string message)
