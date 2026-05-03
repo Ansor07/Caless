@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: dacb25a768ca202409948c5fe1e2261a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameManager: {instanceID: 0}
+  - menuBackgroundImage: {fileID: 21300000, guid: b02c2066f4c63404e8771e7865abfd3e, type: 3}
+  - titleImage: {fileID: 21300000, guid: a07ebc46c53e1e14c9a2f74d19e0df79, type: 3}
+  - subtitleImage: {fileID: 21300000, guid: 0be0eea5b7f052d479109110a132c01f, type: 3}
+  - profileIconImage: {fileID: 21300000, guid: 1e34a0180c47ea64eb133492ded21237, type: 3}
+  - trophyIconImage: {fileID: 21300000, guid: e9c0616eae3a3a840b44256d2461d775, type: 3}
+  - vsComputerCardImage: {fileID: 21300000, guid: 0753c5ed068f1184181c854b533798cf, type: 3}
+  - vsHumanCardImage: {fileID: 21300000, guid: 91d1a789f8c169d4eb3f452a410c9480, type: 3}
+  - bluetoothCardImage: {fileID: 21300000, guid: e15e92b126fa99140b2b1c59eac3f84b, type: 3}
+  - tabBarBackgroundImage: {fileID: 21300000, guid: b02c2066f4c63404e8771e7865abfd3e, type: 3}
+  - tabPlayIconImage: {fileID: 21300000, guid: dfd316071a99a9a439134c0d4d99794b, type: 3}
+  - tabEducationIconImage: {fileID: 21300000, guid: 0be0eea5b7f052d479109110a132c01f, type: 3}
+  - tabSettingsIconImage: {fileID: 21300000, guid: a07ebc46c53e1e14c9a2f74d19e0df79, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
